@@ -10,6 +10,7 @@
     <!-- Libraries -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
+
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- <link rel="stylesheet" href="css/main.css" /> -->
@@ -20,7 +21,7 @@
         <div class='col-md-12 jumbotron'>
             <h1>The Perfect Bracket</h1>
             <p>
-                A visual exploration of what your chances are of creating a perfect March Madness backet for the NCAA Tournament.  
+                A visual exploration of what your chances are of creating a perfect March Madness backet for the NCAA Tournament.
             </p>
     </section>
 
@@ -29,10 +30,9 @@
         <div class="container">
             <h2>Bracket Madness</h2>
             <p>
-                Every year 68 teams enter the March Madness Bracket...Your odds of getting a perfect bracket? Try 1 in 9,223,372,036,854,775,808 or 1 in 9.2 quintillion.
-                (This excludes the first four games as a 16 seed has never beaten a 1 seed.)
-
-                To put this into perspective, you have a better chance of: 
+                Every year 68 teams enter the March Madness Bracket...Your odds of getting a perfect bracket? Try 1 in 9,223,372,036,854,775,808
+                or 1 in 9.2 quintillion. (This excludes the first four games as a 16 seed has never beaten a 1 seed.) To
+                put this into perspective, you have a better chance of:
                 <ul>
                     <li>Winning an Academy Award (1 in ~11,500)</li>
                     <li>Getting Struck by Lightning (1 in ~700,000)</li>
@@ -57,10 +57,10 @@
                 <!-- INSERT VIS -->
             </div>
             <div class="container">
-            <p>
-                This bracket shows 4 teams playing 3 games. Since there are two possible outputs for each game we get 8 possibilities (2<sup>3</sup>).
-                Now, if we do the same thing for 64 teams and 63 games we get (2<sup>63</sup> = 9.2 quintillion)
-            </p>
+                <p>
+                    This bracket shows 4 teams playing 3 games. Since there are two possible outputs for each game we get 8 possibilities (2<sup>3</sup>).
+                    Now, if we do the same thing for 64 teams and 63 games we get (2<sup>63</sup> = 9.2 quintillion)
+                </p>
             </div>
         </section>
     </section>
@@ -94,6 +94,66 @@
             </div>
         </section>
     </section>
+
+
+    <!-- PT.2 MAP -->
+    <section>
+        <div class="container">
+            <h2>MAP</h2>
+        </div>
+        <section>
+            <div class="container">
+                <h3>MAP</h3>
+            </div>
+            <div>
+                <script scr="Map.js">
+
+
+                </script>
+            </div>
+        </section>
+    </section>
+
+    <style>
+        .states :hover {
+        fill: red;
+        }
+
+        .state-borders {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 0.5px;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            pointer-events: none;
+        }
+
+        </style>
+        <svg width="960" height="600"></svg>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script>
+
+    var svg = d3.select("svg");
+
+    var path = d3.geoPath();
+
+    d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
+    if (error) throw error;
+
+    svg.append("g")
+        .attr("class", "states")
+        .selectAll("path")
+        .data(topojson.feature(us, us.objects.states).features)
+        .enter().append("path")
+        .attr("d", path);
+
+    svg.append("path")
+        .attr("class", "state-borders")
+        .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
+    });
+
+</script>
 
 </body>
 
