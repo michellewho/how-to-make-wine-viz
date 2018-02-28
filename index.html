@@ -74,10 +74,71 @@
         <section>
             <div class="container">
                 <h3>Pick # of teams and go</h3>
+                <div id="simulation">
+                    <div id="dropdown"></div>
+                </div>
+
+            </div>
             </div>
             <div>
                 <script type="text/javascript">
-                    
+                    var dataset;
+
+                    var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+                        width = 960 - margin.left - margin.right,
+                        height = 740 - margin.top - margin.bottom;
+
+                    d3.csv("teams_probability.csv", function (data) {
+                        data.forEach(function (d) {
+                            d.Teams = +d.Teams;
+                            d.Possibilities = +d.Possibilities;
+                            d.Probability = +d.Probability;
+                        })
+
+                        dataset = data;
+
+                        drawVis(dataset);
+
+                    });
+
+                    function drawVis(dataset) {
+
+                        console.log(dataset);
+
+                        var nest = d3.nest()
+                            .key(function (d) {
+                                return d.Teams;
+                            })
+                            .key(function (d) {
+                                return d.Possibilities
+                            })
+                            .key(function (d) {
+                                return d.Probability
+                            })
+                            .entries(dataset)
+
+                        var container = d3.select("#simulation").append("svg")
+                            .attr("width", 960)
+                            .attr("height", 200)
+
+                        container.append('p')
+                        .text('Pick Number of Teams and Go')
+
+                        var dropdown = d3.select('#dropdown')
+
+                        dropdown.append('select')
+                            .selectAll('option')
+                            .data(nest)
+                            .enter()
+                            .append('option')
+                            .attr('value', function (d) {
+                                return d.key;
+                            })
+                            .text(function (d) {
+                                return d.key;
+                            })
+
+                    }
                 </script>
             </div>
         </section>
@@ -111,7 +172,6 @@
             <div>
                 <script scr="Map.js">
 
-
                 </script>
             </div>
         </section>
@@ -119,7 +179,7 @@
 
     <style>
         .states :hover {
-        fill: red;
+            fill: red;
         }
 
         .state-borders {
@@ -130,33 +190,30 @@
             stroke-linecap: round;
             pointer-events: none;
         }
-
-        </style>
-        <svg width="960" height="600"></svg>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/topojson.v2.min.js"></script>
+    </style>
+    <svg width="960" height="600"></svg>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script>
+                    var svg = d3.select("svg");
 
-    var svg = d3.select("svg");
+                    var path = d3.geoPath();
 
-    var path = d3.geoPath();
+                    d3.json("https://d3js.org/us-10m.v1.json", function (error, us) {
+                        if (error) throw error;
 
-    d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
-    if (error) throw error;
+                        svg.append("g")
+                            .attr("class", "states")
+                            .selectAll("path")
+                            .data(topojson.feature(us, us.objects.states).features)
+                            .enter().append("path")
+                            .attr("d", path);
 
-    svg.append("g")
-        .attr("class", "states")
-        .selectAll("path")
-        .data(topojson.feature(us, us.objects.states).features)
-        .enter().append("path")
-        .attr("d", path);
-
-    svg.append("path")
-        .attr("class", "state-borders")
-        .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
-    });
-
-</script>
+                        svg.append("path")
+                            .attr("class", "state-borders")
+                            .attr("d", path(topojson.mesh(us, us.objects.states, function (a, b) { return a !== b; })));
+                    });
+    </script>
 
 </body>
 
