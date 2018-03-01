@@ -3,7 +3,7 @@
 [Header
   title:"The Science of March Madness"
   subtitle: "A visual exploration of what your chances are of creating a perfect March Madness backet for the NCAA Tournament."
-  author:"Michelle Ho, Austin Hutchinson, Jon Alkan" /]
+  author: "Michelle Ho, Austin Hutchinson, Jon Alkan" /]
 
 [waypoint]
 ## Overview of March Madness
@@ -28,19 +28,16 @@ have a better chance of:
 
 [waypoint]
 ## Where does 1 in 9.2 quintillion come from?
-is nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
- reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
- in culpa qui officia deserunt mollit anim id est laborum.
+To understand where these odds come from, it's important to understand probability. Probability is the extent to which something is 
+probable; the likelihood of something happening or being the case.
+
+
+[var name:"selectVal" value:"2" /]
+Number of Teams: [Select value:selectVal options:`["2", "4", "8", "16", "32", "64"]`  /]
+
 [/waypoint]
 
-[waypoint]
-## Lets start with just 4 teams
-Let's break this down. Imagine we have 4 teams, with 3 games total. Since there are two possible outputs for each game we get 8 possibilities 
-(2^3). Now, if we do the same thing for 64 teams and 63 games we get 
-(263 = 9.2 quintillion)
 
-// fix numbers later ^^^
-[/waypoint]
 
 
 [/section]

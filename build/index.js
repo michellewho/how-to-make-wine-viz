@@ -1946,7 +1946,73 @@ var Header = function (_React$PureComponent) {
 }(_react2.default.PureComponent);
 
 exports.default = Header;
-},{"react":"/usr/local/lib/node_modules/idyll/node_modules/react/index.js"}],"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/utils/container.js":[function(require,module,exports){
+},{"react":"/usr/local/lib/node_modules/idyll/node_modules/react/index.js"}],"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/select.js":[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ReactDOM = require('react-dom');
+
+var Select = function (_React$PureComponent) {
+  _inherits(Select, _React$PureComponent);
+
+  function Select(props) {
+    _classCallCheck(this, Select);
+
+    var _this = _possibleConstructorReturn(this, _React$PureComponent.call(this, props));
+
+    _this.onChange = _this.onChange.bind(_this);
+    return _this;
+  }
+
+  Select.prototype.onChange = function onChange(e) {
+    this.props.updateProps({ value: e.target.value });
+  };
+
+  Select.prototype.render = function render() {
+    return _react2.default.createElement(
+      'select',
+      _extends({ onChange: this.onChange }, this.props),
+      this.props.options.map(function (d) {
+        if (typeof d === 'string') {
+          return _react2.default.createElement(
+            'option',
+            { value: d },
+            d
+          );
+        }
+        return _react2.default.createElement(
+          'option',
+          { value: d.value },
+          d.label || d.value
+        );
+      })
+    );
+  };
+
+  return Select;
+}(_react2.default.PureComponent);
+
+Select.defaultProps = {
+  options: []
+};
+
+exports.default = Select;
+},{"react":"/usr/local/lib/node_modules/idyll/node_modules/react/index.js","react-dom":"/usr/local/lib/node_modules/idyll/node_modules/react-dom/index.js"}],"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/utils/container.js":[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -21342,7 +21408,7 @@ ReactDOM[mountMethod](React.createElement(IdyllDocument, { ast: ast, components:
 },{"__IDYLL_AST__":"__IDYLL_AST__","__IDYLL_COMPONENTS__":"__IDYLL_COMPONENTS__","__IDYLL_DATA__":"__IDYLL_DATA__","__IDYLL_OPTS__":"__IDYLL_OPTS__","__IDYLL_SYNTAX_HIGHLIGHT__":"__IDYLL_SYNTAX_HIGHLIGHT__","idyll-document":"/usr/local/lib/node_modules/idyll/node_modules/idyll-document/dist/cjs/index.js","react":"/usr/local/lib/node_modules/idyll/node_modules/react/index.js","react-dom":"/usr/local/lib/node_modules/idyll/node_modules/react-dom/index.js"}],"__IDYLL_AST__":[function(require,module,exports){
 "use strict";
 
-module.exports = [["section", [], [["Header", [["title", ["value", "The Science of March Madness"]], ["subtitle", ["value", "A visual exploration of what your chances are of creating a perfect March Madness backet for the NCAA Tournament."]], ["author", ["value", "Michelle Ho, Austin Hutchinson, Jon Alkan"]]], []], ["waypoint", [], [["h2", [], ["Overview of March Madness"]], ["p", [], ["Every year, college basketball teams compete to be one of the 64 teams that are invited to play for the NCAA National Championship\nin the March Madness tournament. \nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\n ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in \n reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt \n in culpa qui officia deserunt mollit anim id est laborum."]]]], ["waypoint", [], [["h2", [], ["Bracket Madness"]], ["p", [], ["Every year 68 teams enter the March Madness Bracket...Your odds of getting a perfect bracket? Try 1 in 9,223,372,036,854,775,808 or 1 in 9.2 quintillion. (This excludes the first four games as a 16 seed has never beaten a 1 seed.) To put this into perspective, you \nhave a better chance of:"]], ["ul", [], [["li", [], ["Winning an Academy Award (", "1", " in ~", "1", "1", ",", "5", "0", "0", ")"]], ["li", [], ["Getting Struck by Lightning (", "1", " in ~", "7", "0", "0", ",", "0", "0", "0", ")"]], ["li", [], ["Becoming President (", "1", " in ~", "1", "0", ",", "0", "0", "0", ",", "0", "0", "0", ")"]], ["li", [], ["Winning the Lottery (", "1", " in ~", "1", "7", "5", ",", "2", "2", "3", ",", "5", "1", "0", ")"]]]]]], ["waypoint", [], [["h2", [], ["Where does ", "1", " in ", "9", ".", "2", " quintillion come from?"]], ["p", [], ["is nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in \n reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt \n in culpa qui officia deserunt mollit anim id est laborum."]]]], ["waypoint", [], [["h2", [], ["Lets start with just ", "4", " teams"]], ["p", [], ["Let’s break this down. Imagine we have 4 teams, with 3 games total. Since there are two possible outputs for each game we get 8 possibilities \n(2^3). Now, if we do the same thing for 64 teams and 63 games we get \n(263 = 9.2 quintillion)"]]]]]], ["fixed", [], []]];
+module.exports = [["section", [], [["Header", [["title", ["value", "The Science of March Madness"]], ["subtitle", ["value", "A visual exploration of what your chances are of creating a perfect March Madness backet for the NCAA Tournament."]], ["author", ["value", "Michelle Ho, Austin Hutchinson, Jon Alkan"]]], []], ["waypoint", [], [["h2", [], ["Overview of March Madness"]], ["p", [], ["Every year, college basketball teams compete to be one of the 64 teams that are invited to play for the NCAA National Championship\nin the March Madness tournament. \nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\n ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in \n reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt \n in culpa qui officia deserunt mollit anim id est laborum."]]]], ["waypoint", [], [["h2", [], ["Bracket Madness"]], ["p", [], ["Every year 68 teams enter the March Madness Bracket...Your odds of getting a perfect bracket? Try 1 in 9,223,372,036,854,775,808 or 1 in 9.2 quintillion. (This excludes the first four games as a 16 seed has never beaten a 1 seed.) To put this into perspective, you \nhave a better chance of:"]], ["ul", [], [["li", [], ["Winning an Academy Award (", "1", " in ~", "1", "1", ",", "5", "0", "0", ")"]], ["li", [], ["Getting Struck by Lightning (", "1", " in ~", "7", "0", "0", ",", "0", "0", "0", ")"]], ["li", [], ["Becoming President (", "1", " in ~", "1", "0", ",", "0", "0", "0", ",", "0", "0", "0", ")"]], ["li", [], ["Winning the Lottery (", "1", " in ~", "1", "7", "5", ",", "2", "2", "3", ",", "5", "1", "0", ")"]]]]]], ["waypoint", [], [["h2", [], ["Where does ", "1", " in ", "9", ".", "2", " quintillion come from?"]], ["p", [], ["To understand where these odds come from, it’s important to understand probability. Probability is the extent to which something is \nprobable; the likelihood of something happening or being the case."]], ["p", [], [["var", [["name", ["value", "selectVal"]], ["value", ["value", "2"]]], []], "\nNumber of Teams: ", ["Select", [["value", ["variable", "selectVal"]], ["options", ["expression", "[\"2\", \"4\", \"8\", \"16\", \"32\", \"64\"]"]]], []]]]]]]], ["fixed", [], []]];
 
 },{}],"__IDYLL_COMPONENTS__":[function(require,module,exports){
 'use strict';
@@ -21350,10 +21416,11 @@ module.exports = [["section", [], [["Header", [["title", ["value", "The Science 
 module.exports = {
 	'header': require('/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js'),
 	'waypoint': require('/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/waypoint.js'),
+	'select': require('/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/select.js'),
 	'fixed': require('/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/fixed.js')
 };
 
-},{"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/fixed.js":"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/fixed.js","/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js":"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js","/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/waypoint.js":"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/waypoint.js"}],"__IDYLL_DATA__":[function(require,module,exports){
+},{"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/fixed.js":"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/fixed.js","/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js":"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js","/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/select.js":"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/select.js","/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/waypoint.js":"/usr/local/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/waypoint.js"}],"__IDYLL_DATA__":[function(require,module,exports){
 "use strict";
 
 module.exports = {};
