@@ -46,6 +46,5 @@ Let's break this down. Imagine we have 4 teams, with 3 games total. Since there 
 [/section]
 
 [fixed]
-[CustomD3Component data:someArrayOfData /]
 
 [/fixed]
