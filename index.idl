@@ -29,15 +29,16 @@ have a better chance of:
 [waypoint]
 ## Where does 1 in 9.2 quintillion come from?
 To understand where these odds come from, it's important to understand probability. Probability is the extent to which something is 
-probable; the likelihood of something happening or being the case.
+probable, or in simpler terms, the likelihood of something happening or being the case. 
 
+Let's assume we have 2 teams, and 1 game being played. If there are two teams, assuming teams are equal in skill and all other things
+held constant, each team will have a 50% chance or 1/2 probability of winning the match. 
 
 [var name:"selectVal" value:"2" /]
 Number of Teams: [Select value:selectVal options:`["2", "4", "8", "16", "32", "64"]`  /]
 
+
 [/waypoint]
-
-
 
 
 [/section]
