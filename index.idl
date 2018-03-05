@@ -5,6 +5,9 @@
   subtitle: "A visual exploration of what your chances are of creating a perfect March Madness backet for the NCAA Tournament."
   author: "Michelle Ho, Austin Hutchinson, Jon Alkan" /]
 
+[data name:"simpleodds" source:"simpleOddsJSON.json" /]
+[data name:"winningodds" source:"winningOddsJSON.json" /]
+
 [waypoint]
 ## Overview of March Madness
 Every year, college basketball teams compete to be one of the 64 teams that are invited to play for the NCAA National Championship
@@ -40,9 +43,57 @@ Number of Teams: [Select value:selectVal options:`["2", "4", "8", "16", "32", "6
 
 [/waypoint]
 
+[waypoint]
+
+## What are the odds based off ranking?
+In the tournament, each team is given a ranking that depends on their play throughout the year leading up to the tournament. Within each of the four divions, teams are ranked 1 through 16 and from these numbers their first games are decided. The games are decided so that, initially, the #1 ranked (seeded) team plays the #16 seed team, the #2 seed plays #15, #3 seed plays #14 seed, and so on. Historically, these teams have a set percentage of winning the first round based off these ranks. The visualization to the right shows the likelihood of each team winning their first game based off their rank.
+
+Select Team Seed: 
+1 [Range value:seedSelect min:1 max:16 /] 16
+
+[aside]
+[/aside]
+
+[/waypoint]
 
 [/section]
 
 [fixed]
+[var name:"seedSelect" value:1 /]
+
+Selected Team Seed: [Display value:seedSelect /]
+[IdyllVegaLite data:`simpleodds.slice(seedSelect-1, seedSelect)` spec:`{
+  	width: 500,
+  	height: 100,
+  	  "layer": [{
+		    "mark": "bar",
+		    "encoding": {
+				x: {
+			      	field: "p_win",
+			      	type: "quantitative",
+			      	axis: {title: "Chance of Winning (Percent)"},
+			      	stack: "normalize",
+			      	scale: { domain: [0, 100] }
+		    	},
+    		}
+		}, {
+		   "mark": {
+		    "type": "text",
+		    "align": "left",
+		    "baseline": "middle",
+		    "dx": 3
+		},
+		"encoding": {
+			x: {
+			   	field: "p_win",
+			   	type: "quantitative",
+			   	axis: {title: "Chance of Winning (Percent)"},
+			   	stack: "normalize",
+			   	scale: { domain: [0, 100] }
+		    },
+		    "text": {"field": "p_win", "type": "quantitative"},
+		  }
+		}]
+}` /]
 
 [/fixed]
